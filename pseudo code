@@ -1,0 +1,34 @@
+includes:
+-string.h (HUZZAH)
+-file.h? (unsure of name)
+
+varaibles:
+-dictionary array [20000][MAX_NAME_LENGTH], (init it null?)
+-count array [20000], intitalize to 0
+-highest_count array [10], init to 0
+-int name_index, init to 0
+-int valid_commas, init to 0
+-int last_valid_tweeter_index, init to 0
+
+order:
+1. open file from command line arguments
+2. read in the header line
+  - first line until \n using string tok
+  - valid_commas = (increment for each comma on header line) - 1
+  - name_index = valid_commas when token = "name"
+3.get tweeters for rest of file
+  - string tok and take name_index token
+  - search dictionary for string
+      - if in dictionary, increment matching index of count array
+      - else add to dictionary at last_valid_tweeter_index+1
+4. search count array for highest values (somehow)
+  - put first 10 into count array
+  - for rest compare to 10th count
+      - if higher move all elements to place new index
+      -else move on
+5. print array of top 10 tweeters and their tweet counts
+6. return 0
+
+TO DO:
+find places for possible errors or failures
+  
