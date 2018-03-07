@@ -2,8 +2,12 @@ includes:
 -string.h (HUZZAH)
 -file.h? (unsure of name)
 
+***
+
 #include stdio.h;
 #include stdlib.h;
+
+***
 
 varaibles:
 -dictionary array [20000][MAX_NAME_LENGTH], (init it null?)
@@ -13,6 +17,8 @@ varaibles:
 -int valid_commas, init to 0
 -int last_valid_tweeter_index, init to 0
 
+***
+
 //  make array of strings for tweeter names
 int MAX_TWEETERS = 20000;
 int MAX_TWEETER_NAME_LENGTH = 20;
@@ -21,25 +27,35 @@ int count[MAX_TWEETERS];
 int last_valid_tweeter_index = 0;
 
 // initialise the tweeter counts to zero
-for(int i = 0; i < max_NumTweeters; i++) {
+for(int i = 0; i < MAX_TWEETERS; i++) {
   count[i] = 0;
 }
 
+***
 
 order:
 1. open file from command line arguments
 
+***
+
 // read in file
 FILE * f = fopen(filename, 'r');
 
+// CHECK: does file exist?
+if(f == NULL) {
+  printf("Invalid Input CSV\n");
+  return 0;
+}
 
-
+***
 
 2. read in the header line
   - first line until \n using string tok
   - valid_commas = (increment for each comma on header line) - 1
   - name_index = valid_commas when token = "name"
   
+***
+
 // read in the first line of the file
 char line[MAX_TWEETER_NAME_LENGTH] = f.read(1 line, end with '\n');
 
@@ -58,22 +74,22 @@ while(token != NULL) {
 }
 
 // now we have the number of headers
-  
-  
-  
+
+***
+
 3.get tweeters for rest of file
   - string tok and take name_index token
   - search dictionary for string
       - if in dictionary, increment matching index of count array
       - else add to dictionary at last_valid_tweeter_index+1
       
- // parse the file.
+// parse the rest of the file.
 // jumpstart the loop
 line = f.read(1 line, '\n');
 
+// Loop thorugh file
 while(line != NULL) {
   // read in a token
-  
   token = strtok(line, ",");
   int num_toks_in_line = numHeaders;
   int num_tok = 0;
@@ -100,9 +116,8 @@ while(line != NULL) {
   line = strtok(NULL, ",");
 } // end outer while
       
-      
-      
-      
+*** 
+    
 4. search count array for highest values (somehow)
   - put first 10 into count array
   - for rest compare to 10th count
