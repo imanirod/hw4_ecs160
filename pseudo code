@@ -123,6 +123,31 @@ while(line != NULL) {
   - for rest compare to 10th count
       - if higher move all elements to place new index
       -else move on
+      
+  int highest[10] = {-1}; //this holds the index not the count
+	int curr_index = 0
+	int i = 0;
+
+	highest[0] = 0
+	for(i = 1, i < 9, i++)//check bounds
+	{
+		if(counts[highest[curr_index]] < counts[i])
+			\\shift array elements possibly in a seperate sort function
+		else 
+			highest[curr_index+1] = i
+		curr_index++;
+	}
+
+	for(i = 9, i < max_valid, i++)//check bounds
+	{
+		if(counts[highest[9]] < counts[i])
+			\\shift array elements
+		else
+			continue
+	}
+ 
+***
+
 5. print array of top 10 tweeters and their tweet counts
 6. return 0
 
