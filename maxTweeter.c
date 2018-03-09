@@ -22,6 +22,17 @@ void sort_ten(int *highest, int max_index)
   //FILL IN PSEUDOCODE
 }
 
+int compare(int *x, int *y)
+{
+	int a = x[1];
+	int b = y[1];
+	if(a < b)
+		return -1;
+	if(a > b)
+		return 1;
+	else return 0;
+}
+
 // main
 int main(int argc, char *argv[]){
   //read file
@@ -144,12 +155,14 @@ int main(int argc, char *argv[]){
   }
   
   // part 4
-  int highest[10] = {-1}; //this holds the index not the count
+  int highest[10][2]; //this holds the index not the count
+	for (int i = 0; i < 10; i++)
+ 		for (int j = 0; j < 2; j++)
+    	highest[i][j] = -1;
 	int curr_index = 0
 	int i = 0;
-
-	highest[0] = 0
-	for(i = 1, i < 9, i++)//check bounds
+	
+	for(i = 0, i < 10, i++)//check bounds
 	{
 		if(counts[highest[curr_index]] < counts[i])
     {
@@ -160,8 +173,10 @@ int main(int argc, char *argv[]){
 			highest[curr_index+1] = i
 		curr_index++;
 	}
+	
+	qsort(highest, 10, sizeof highest[0], compare);
 
-	for(i = 9, i < last_valid_tweeter_index, i++)//check bounds
+	for(i = 10, i < last_valid_tweeter_index, i++)//check bounds
 	{
 		if(counts[highest[9]] < counts[i])
     {
