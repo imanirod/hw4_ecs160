@@ -99,12 +99,12 @@ int main(int argc, char *argv[]){
   while(line != NULL) {
     // read in a token
     token = strtok(line, ",");
-    int num_toks_in_line = numHeaders;
-    int num_tok = 0;
+    //int num_toks_in_line = numHeaders; // Unnecessary
+    int num_tok = numHeaders;
   
     // while there's still tokens available, and there aren't too many tokens
     // K_ADD: num_toks_in_line needs to be decremented
-    while(token != NULL && num_toks_in_line-- > 0) { 
+    while(token != NULL && num_tok > 0) { 
       if(num_tok == nameHeader) { // i.e. we've hit the right column
         // try to find name in dictionary
         int found = findName(dictionary, last_valid_tweeter_index, token); // not found = -1, found = num >= 0.  IMPLEMENT THIS, THIS IS PSEUDOCODE
@@ -122,9 +122,17 @@ int main(int argc, char *argv[]){
     
       //K_ADD: move on to next token
       token = strtok(NULL, ",");
+      num_tok--;
     
     } // end inner while
-  
+    
+    // check that the there are the right number of tokens in the line
+    // the current token should be null, and numTok should be 0
+    if(!token && numTok != 0) {
+        printf("columns don't match up with the number of headers");
+	return 1;
+    }
+	  
     // Read in next line
     fgets(line,MAX_TWEETER_NAME_LENGTH,f);
   } // end outer while
