@@ -17,6 +17,11 @@ int findName(char **dictionary, unsigned int dictionary_length, char* tok) {
   return -1;
 }
 
+void sort_ten(int *highest, int max_index)
+{
+  //FILL IN PSEUDOCODE
+}
+
 // main
 int main(int argc, char *argv[]){
   //read file
@@ -131,6 +136,38 @@ int main(int argc, char *argv[]){
   }
   
   // part 4
-  
+  int highest[10] = {-1}; //this holds the index not the count
+	int curr_index = 0
+	int i = 0;
+
+	highest[0] = 0
+	for(i = 1, i < 9, i++)//check bounds
+	{
+		if(counts[highest[curr_index]] < counts[i])
+    {
+      highest[curr_index+1] = i
+			sort_ten(highest, counts, i); //EDIT: POINTERS?
+    }
+		else 
+			highest[curr_index+1] = i
+		curr_index++;
+	}
+
+	for(i = 9, i < last_valid_tweeter_index, i++)//check bounds
+	{
+		if(counts[highest[9]] < counts[i])
+    {
+      highest[9] = i;
+      sort_ten(highest, counts, i);
+    }
+		else
+			continue;
+	}
+ 
+  //part 5
+  for(i = 1, i < 10, i++)//check bounds
+	{
+    printf("%s, %d", dictionary[highest[i]], counts[highest[i]]);
+  }
   return 0;
 }
