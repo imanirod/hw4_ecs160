@@ -29,7 +29,6 @@ int compare(const void *p1, const void *p2)
 
 // main
 int main(int argc, char *argv[]){
-  // printf("%s","*******************************************************\n");
   //read file
   if(argc != 2){
     printf("Invalid Command Line Args\n");
@@ -157,9 +156,14 @@ int main(int argc, char *argv[]){
   }
   qsort(count, MAX_TWEETERS, sizeof (int*), compare);
   // for loop for testing
-  for(int i = 0; i < 12; i++) {
-    printf("Name: %s\n",dictionary[count[i][1]]);
-    printf("Count: %d\n",count[i][0]);
+  for(int i = 0; i < MAX_TWEETERS; i++) {
+    if(count[i][0] != 0) {
+      printf("Name: %s\n",dictionary[count[i][1]]);
+      printf("Count: %d\n",count[i][0]);
+    }
+    else {
+      break;
+      }
   }
   return 0;
 }
