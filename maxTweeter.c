@@ -161,9 +161,9 @@ int main(int argc, char *argv[]){
   }
   
   // for loop for testing
-  // for(int i = 0; i < 12; i++) {
-  //   printf("Name: %s\n",dictionary[i]);
-  //   printf("Count: %d\n",count[i]);
-  // }
+  for(int i = 0; i < 12; i++) {
+    printf("Name: %s\n",dictionary[i]);
+    printf("Count: %d\n",count[i]);
+  }
   return 0;
 }

@@ -58,6 +58,7 @@ int main(int argc, char *argv[]){
   // initialise the tweeter counts to zero
   for(int i = 0; i < MAX_TWEETERS; i++) {
     count[i][0] = 0;
+    count[i][1] = -1;
   }
 
   //open file for reading
@@ -159,9 +160,11 @@ int main(int argc, char *argv[]){
   
   // for loop for testing 
 	//EDIT: printing for the new version of count
-  // for(int i = 0; i < 12; i++) {
-  //   printf("Name: %s\n",dictionary[count[i][1]]);
-  //   printf("Count: %d\n",count[i][0]);
-  // }
+  for(int i = 0; i < 20; i++) {
+    if(count[i][1] != -1) {
+      printf("Name: %s\n",dictionary[count[i][1]]);
+      printf("Count: %d\n",count[i][0]);
+    }
+  }
   return 0;
 }
