@@ -17,7 +17,7 @@ int findName(char dictionary[][20], unsigned int dictionary_length, char* tok) {
   return -1;
 }
 
-int compare(const int *p1, const int *p2)
+int compare(const void *p1, const void *p2)
 {
 	const int (*a)[2] = p1;
     const int (*b)[2] = p2;
