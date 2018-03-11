@@ -6,7 +6,7 @@
 // Takes in an array of c-strings, the length of that array, and a c-string tok.
 // if tok is found, outputs the index in that array of tok
 // else, outputs -1
-int findName(char dictionary[][20], unsigned int dictionary_length, char* tok) {
+int findName(char dictionary[][50], unsigned int dictionary_length, char* tok) {
   // iterate through all the strings in dictionary
   for(int i = 0; i < dictionary_length+1; i++) {
     // if we find the token in the dictionary, return the index position of that element
