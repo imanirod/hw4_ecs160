@@ -1,0 +1,6 @@
+qsort: https://stackoverflow.com/questions/1787996/c-library-function-to-do-sort
+string.h functions: http://www.cplusplus.com/reference/cstring/
+fgets: http://www.cplusplus.com/reference/cstdio/fgets/
+fopen: http://www.cplusplus.com/reference/cstdio/fopen/
+       https://www.tutorialspoint.com/cprogramming/c_file_io.htm
+

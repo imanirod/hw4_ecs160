@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
   
   int length_filename = strlen(argv[1]);
   
-  if(length_filename > 50){
+  if(length_filename > 100){
     printf("Invalid Filename Length\n");
     return 1; //filename too long
   }
@@ -107,11 +107,22 @@ int main(int argc, char *argv[]){
   // Loop thorugh file
   while(fgets(line,MAX_LINE_LENGTH,f) != NULL) {
     // read in a token
-    token = strtok(line, ",");
+    
+    // if the first character itself is a delimiter (i.e. the comma),
+    // the code won't work properly.
+    // http://www.cplusplus.com/reference/cstring/strtok/
+    int specialCase = 0;
+    if(line && line[0] != ',') {
+      token = strtok(line, ",");
+    }
+    else {
+      token = "\0";
+      specialCase = 1;
+    }
     int num_tok = 0;
   
     // while there's still tokens available, and there aren't too many tokens
-    while(token != NULL && num_tok < numHeaders) { 
+    while((token != NULL || (token == NULL && specialCase == 1)) && num_tok < numHeaders) { 
       if(num_tok == name_index) { // i.e. we've hit the right column
         // try to find name in dictionary
         int found = findName(dictionary, last_valid_tweeter_index, token); // not found = -1, found = num >= 0.  IMPLEMENT THIS, THIS IS PSEUDOCODE
@@ -144,6 +155,9 @@ int main(int argc, char *argv[]){
     // check that the there are the right number of tokens in the line
     // the current token should be null, and numTok should be equal to the number of headers
     if(token != NULL || num_tok != numHeaders) {
+        // printf("token is %s\n",token);
+//         printf("num_tok is %d\n",num_tok);
+//         printf("numheaders is %d\n",numHeaders);
         printf("columns don't match up with the number of headers\n");
 	      return 1;
     }
@@ -158,8 +172,8 @@ int main(int argc, char *argv[]){
   // for loop for testing
   for(int i = 0; i < MAX_TWEETERS; i++) {
     if(count[i][0] != 0) {
-      printf("Name: %s\n",dictionary[count[i][1]]);
-      printf("Count: %d\n",count[i][0]);
+      printf("%s: ",dictionary[count[i][1]]);
+      printf("%d\n",count[i][0]);
     }
     else {
       break;
